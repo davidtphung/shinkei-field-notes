@@ -1,7 +1,7 @@
 const proof = [
-  ['01', 'POSEIDON', 'Computer vision identifies the harvest point. Automated ike jime makes a difficult deck operation repeatable, fast, and precise.'],
-  ['02', 'FRESHNESS', 'Less physiological stress at harvest helps preserve texture, flavor, and the working life of every fish.'],
-  ['03', 'TRACEABILITY', 'A clear record follows the catch from vessel to buyer, making quality a visible standard rather than a promise.'],
+  ['poseidon', 'VISION / LOCKED', 'POSEIDON', 'Computer vision identifies the harvest point. Automated ike jime makes a difficult deck operation repeatable, fast, and precise.'],
+  ['freshness', 'QUALITY / PROTECTED', 'FRESHNESS', 'Less physiological stress at harvest helps preserve texture, flavor, and the working life of every fish.'],
+  ['traceability', 'RECORD / CONTINUOUS', 'TRACEABILITY', 'A clear record follows the catch from vessel to buyer, making quality a visible standard rather than a promise.'],
 ];
 
 export default function Home() {
@@ -41,7 +41,11 @@ export default function Home() {
     </section>
     <section id="system" className="proof" aria-labelledby="system-title">
       <div><p className="eyebrow">THE SHINKEI SYSTEM</p><h2 id="system-title">FROM CATCH<br />TO CONFIDENCE.</h2></div>
-      <ol>{proof.map(([n, t, d]) => <li key={n}><span>{n}</span><h3>{t}</h3><p>{d}</p></li>)}</ol>
+      <ol>{proof.map(([key, tag, title, description]) => <li className={`system-module ${key}`} key={key}>
+        <div className="module-head"><span>{tag}</span><i aria-hidden="true" /></div>
+        <div className="module-art" aria-hidden="true"><b /><em /><strong /></div>
+        <div className="module-copy"><h3>{title}</h3><p>{description}</p></div>
+      </li>)}</ol>
     </section>
     <section className="press-note" aria-label="Independent coverage">
       <p className="eyebrow">INDEPENDENT COVERAGE</p>
