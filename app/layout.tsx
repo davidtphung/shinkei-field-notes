@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'Shinkei Systems — Artisanal Quality at Industrial Scale',
+  title: 'Shinkei Systems: Artisanal Quality at Industrial Scale',
   description: 'A focused field-notes experience for the Shinkei fleet.',
 };
 
