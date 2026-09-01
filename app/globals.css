@@ -1,5 +1,7 @@
 @import 'tailwindcss';
 
+.press-note{padding:12vw 8vw;background:#dbe4df;color:#081217}.press-note blockquote{max-width:980px;margin:.8rem 0 1.2rem;font-size:clamp(2.5rem,6vw,7rem);font-weight:900;line-height:.9;letter-spacing:-.085em}.press-note>p:not(.eyebrow):not(.byline){max-width:550px;font-size:1.05rem;line-height:1.55}.press-note .byline{margin-top:2rem;font-size:.68rem;font-weight:bold;letter-spacing:.12em}.press-note .byline a{text-decoration-thickness:1px;text-underline-offset:.25em}@media(max-width:700px){.press-note{padding:5rem 1.5rem}}
+
 @media (min-width:701px){
   main .hero .hero-copy{top:0!important;bottom:auto!important;padding:5.25rem 7vw 3rem!important}
   main .hero h1{font-size:clamp(3.4rem,6.4vw,7.5rem)!important;line-height:.86!important;margin-top:.7rem!important}
