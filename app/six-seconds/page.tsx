@@ -12,11 +12,13 @@ const pages = [
   ['03', 'The factory floor.', 'The people and production behind the system.'],
   ['04', 'The record follows the fish.', 'A closer look at the signal from deck to plate.'],
 ];
+const spreads = [[0], [1, 2], [3, 4], [5, 6]];
 
 export default function SixSeconds() {
-  const [page, setPage] = useState(0);
-  const previous = () => setPage(value => Math.max(0, value - 1));
-  const next = () => setPage(value => Math.min(pages.length - 1, value + 1));
+  const [spread, setSpread] = useState(0);
+  const activePages = spreads[spread];
+  const previous = () => setSpread(value => Math.max(0, value - 1));
+  const next = () => setSpread(value => Math.min(spreads.length - 1, value + 1));
 
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
@@ -39,15 +41,21 @@ export default function SixSeconds() {
       <p>Stories from the boats and the factory floor. Explore the field brief one spread at a time.</p>
     </section>
     <section className="brief-stage" aria-label="Six Seconds field brief reader">
-      <div className="brief-meta"><span>{pages[page][0]} / {String(page + 1).padStart(2, '0')}</span><span>{pages[page][1]}</span></div>
-      <div className="brief-page-wrap">
-        <img key={page} src={`/assets/six-seconds/page-${page + 1}.jpg`} alt={`Page ${page + 1}: ${pages[page][1]}`} />
+      <div className="brief-meta"><span>SPREAD {String(spread + 1).padStart(2, '0')} / {String(spreads.length).padStart(2, '0')}</span><span>{activePages.map(index => pages[index][0]).join(' + ')}</span></div>
+      <div className={`zine-book ${spread === 0 ? 'cover-open' : ''}`} aria-label={`Six Seconds spread ${spread + 1}`}>
+        <div className="zine-spread" key={spread}>
+          {activePages.map((index, position) => <figure className={`zine-sheet sheet-${position}`} key={index}>
+            <img src={`/assets/six-seconds/page-${index + 1}.jpg`} alt={`Page ${index + 1}: ${pages[index][1]}`} />
+            <figcaption>{String(index + 1).padStart(2, '0')} / 07</figcaption>
+          </figure>)}
+          {activePages.length === 1 && <div className="zine-blank" aria-hidden="true"><span>SHINKEI SYSTEMS<br />FIELD BRIEF / VOL. 01</span></div>}
+        </div>
       </div>
-      <p className="brief-caption">{pages[page][2]}</p>
+      <p className="brief-caption">{activePages.map(index => pages[index][2]).join('  ')}</p>
       <div className="brief-controls">
-        <button type="button" onClick={previous} disabled={page === 0} aria-label="Previous page">← PREVIOUS</button>
-        <div className="brief-dots" aria-label="Choose a page">{pages.map((item, index) => <button type="button" key={item[0]} className={index === page ? 'active' : ''} onClick={() => setPage(index)} aria-label={`Go to page ${index + 1}`} aria-current={index === page ? 'page' : undefined}>{String(index + 1).padStart(2, '0')}</button>)}</div>
-        <button type="button" onClick={next} disabled={page === pages.length - 1} aria-label="Next page">NEXT →</button>
+        <button type="button" onClick={previous} disabled={spread === 0} aria-label="Previous spread">← TURN BACK</button>
+        <div className="brief-dots" aria-label="Choose a spread">{spreads.map((_, index) => <button type="button" key={index} className={index === spread ? 'active' : ''} onClick={() => setSpread(index)} aria-label={`Go to spread ${index + 1}`} aria-current={index === spread ? 'page' : undefined}>{String(index + 1).padStart(2, '0')}</button>)}</div>
+        <button type="button" onClick={next} disabled={spread === spreads.length - 1} aria-label="Next spread">TURN PAGE →</button>
       </div>
     </section>
     <footer className="brief-footer"><p>Use the arrow keys to navigate.</p><a href="/">BACK TO FIELD NOTES ↑</a></footer>
