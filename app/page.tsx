@@ -9,7 +9,7 @@ export default function Home() {
     <a className="skip" href="#story">Skip to story</a>
     <header className="nav">
       <a className="wordmark" href="#top" aria-label="Shinkei Systems home">SHINKEI<span>®</span></a>
-      <nav aria-label="Main navigation"><a href="#story">Story</a><a href="#system">System</a><a href="#contact">Contact</a></nav>
+      <nav aria-label="Main navigation"><a href="#story">Story</a><a href="#system">System</a><a href="/six-seconds">Brief</a><a href="#contact">Contact</a></nav>
       <a className="nav-cta" href="#contact">JOIN THE FLEET ↗</a>
     </header>
     <section id="top" className="hero" aria-labelledby="hero-title">
